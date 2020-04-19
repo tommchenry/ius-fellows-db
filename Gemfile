@@ -54,3 +54,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
  gem 'cancancan'
  gem 'draper'
  gem 'pundit'
+ 
+ # Annotate model files
+ group :development do
+     gem 'annotate'
+ end
