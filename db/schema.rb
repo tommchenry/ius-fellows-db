@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_10_045039) do
+ActiveRecord::Schema.define(version: 2020_04_19_193716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,45 @@ ActiveRecord::Schema.define(version: 2020_04_10_045039) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "fellows", force: :cascade do |t|
+    t.integer "fellow_id"
+    t.string "title"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address_1"
+    t.string "address_2"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.string "country"
+    t.string "work_telephone"
+    t.string "home_telephone"
+    t.string "fax"
+    t.string "email"
+    t.string "gender"
+    t.string "ethnicity"
+    t.string "nationality"
+    t.string "fellow_type"
+    t.string "academic_discipline"
+    t.string "consulting"
+    t.string "affiliation"
+    t.string "position"
+    t.string "last_dues_paid"
+    t.string "council"
+    t.boolean "board_dir"
+    t.string "status"
+    t.string "transaction_status"
+    t.string "transaction_number"
+    t.string "report_to_transaction"
+    t.boolean "list_maker"
+    t.date "date_joined"
+    t.boolean "include_in_roster"
+    t.string "reason_terminated"
+    t.date "date_terminated"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
