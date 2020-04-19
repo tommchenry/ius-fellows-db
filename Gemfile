@@ -62,3 +62,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
  # Need this for producing country selection form
  gem 'country_select', '~> 4.0'
+
+ # Adding money gem for accounting
+ gem 'money-rails', '~>1.12'

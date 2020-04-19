@@ -62,3 +62,53 @@ namespace :fellows do
   end
 end
 
+DEPOSITS_FILENAME = "https://ius-fellows-db.s3.us-east-2.amazonaws.com/IUS+Deposits+April+2020.csv"
+
+namespace :deposits do
+  desc "Import Deposits from CSV"
+  task :import_from_csv => :environment do |t|
+    tmp_file_name = "#{Rails.root}/tmp/fellows_db.csv"
+
+    uri = URI(DEPOSITS_FILENAME)
+    resp = Net::HTTP.get(uri)
+    open(tmp_file_name, "wb") do |file|
+      file.write(resp)
+    end
+    puts "File Downloaded."
+
+    count = 0
+    CSV.foreach(tmp_file_name, headers: true) do |row|
+      count += 1
+      date_processed = Date.parse(row["Date Processed"]) if row["Date Processed"]
+      check_date = Date.parse(row["Check Date"]) if row["Check Date"]
+      gift = if row["Gifts"]
+               row["Gifts"].gsub("$","").gsub(",","").gsub(".","_").gsub("(","").gsub(")","")
+             else
+               "0_00"
+             end
+      amount = if row["Amount"]
+                 row["Amount"].gsub("$","").gsub(",","").gsub(".","_").gsub("(","").gsub(")","")
+               else
+                 "0_00"
+               end
+
+      Deposit.create!(
+        deposit_number: row["Deposit Number"],
+        date_processed: date_processed,
+        check_number: row["Check #"],
+        fellow_id: row["Fellow ID"].to_i,
+        fellow_number: row["FellowNumber"].to_i,
+        check_date: check_date,
+        payment_by: row["Payment by"],
+        payment_type: row["Payment Type"],
+        deposit_type: row["Type"],
+        gift_amount_cents: gift,
+        period: row["Period"],
+        amount_cents: amount,
+        last_name: row["Lastname"]
+      )
+    end
+    puts "File Imported. #{count} deposits created."
+  end
+end
+
