@@ -59,3 +59,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
  group :development do
      gem 'annotate'
  end
+
+ # Need this for producing country selection form
+ gem 'country_select', '~> 4.0'
