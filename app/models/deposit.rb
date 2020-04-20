@@ -24,5 +24,5 @@
 class Deposit < ApplicationRecord
   monetize :amount_cents
   monetize :gift_amount_cents
-  belongs_to :fellow, optional: true
+  belongs_to :fellow, optional: true, primary_key: :fellow_id
 end

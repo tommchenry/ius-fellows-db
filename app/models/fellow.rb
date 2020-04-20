@@ -41,5 +41,5 @@
 #  fellow_id             :integer
 #
 class Fellow < ApplicationRecord
-  has_many :deposits
+  has_many :deposits, foreign_key: :fellow_id, primary_key: :fellow_id
 end
