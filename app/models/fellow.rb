@@ -42,4 +42,8 @@
 #
 class Fellow < ApplicationRecord
   has_many :deposits, foreign_key: :fellow_id, primary_key: :fellow_id
+
+  def full_name
+    [title, first_name, last_name].join(" ")
+  end
 end

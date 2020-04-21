@@ -14,4 +14,18 @@ ActiveAdmin.register Fellow do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  
+  index do
+    column "Fellow ID", :fellow_id
+    column :full_name do |fellow|
+      link_to fellow.full_name, admin_fellow_path(fellow)
+    end
+    column :email
+    column :fellow_type
+    column :last_dues_paid
+    column :board_dir
+    column :status
+    column :date_joined
+    actions
+  end
 end
