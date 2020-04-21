@@ -5,7 +5,7 @@ ActiveAdmin.register Deposit do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :deposit_number, :date_processed, :check_number, :fellow_id, :fellow_number, :check_date, :payment_by, :payment_type, :deposit_type, :gift_amount_cents, :gift_amount_currency, :period, :amount_cents, :amount_currency, :last_name
+  permit_params :deposit_number, :date_processed, :check_number, :fellow_id, :fellow_number, :check_date, :payment_by, :payment_type, :deposit_type, :gift_amount_cents, :gift_amount_currency, :period, :amount_cents, :amount_currency, :last_name
   #
   # or
   #
@@ -14,5 +14,19 @@ ActiveAdmin.register Deposit do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  index do
+    column :deposit_number
+    column :date_processed
+    column :check_number
+    column :fellow_id
+    column :check_date
+    column :payment_by
+    column :deposit_type
+    column :gift_amount
+    column :period
+    column :amount
+    actions
+  end
   
 end
