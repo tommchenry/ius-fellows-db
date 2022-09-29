@@ -10,6 +10,7 @@
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
+  "heroku-prebuild": "yarn install --production=false",
   "devDependencies": {
     "webpack-dev-server": "^4.11.1"
   }
